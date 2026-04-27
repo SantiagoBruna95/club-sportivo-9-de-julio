@@ -58,10 +58,10 @@ Desarrollo ágil con historias de usuario gestionadas mediante Issues en este re
 
 ## 👨‍💻 Equipo de Trabajo
 
-- Brunna, Santiago
-- Torretta, Santiago
-- Pereyra, Joaquín
-- Domínguez, Gerónimo
+- Brunna, Santiago → [@mygituser](https://github.com/SantiagoBruna95)
+- Torretta, Santiago → [@mygituser](https://github.com/Santi10glo)
+- Pereyra, Joaquín → [@mygituser](https://github.com/joaquinpereyra2)
+- Domínguez, Gerónimo → [@mygituser](https://github.com/pekedev)
 
 ---
 
