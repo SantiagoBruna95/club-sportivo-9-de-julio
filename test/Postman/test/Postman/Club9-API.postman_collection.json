@@ -1,0 +1,84 @@
+{
+  "info": {
+    "_postman_id": "e88ecc56-f133-4105-b829-a961eaad81a6",
+    "name": "Club9-API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "55386171",
+    "_collection_link": "https://go.postman.co/collection/55386171-e88ecc56-f133-4105-b829-a961eaad81a6?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "1. Ingreso sin registro",
+      "item": [
+        {
+          "name": "G-003 Listado de noticias",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const noticias = pm.response.json().content;\r\n\r\npm.test(\"Responde 200\", () => pm.response.to.have.status(200));\r\n\r\npm.test(\"Devuelve al menos 3 noticias\", () => {\r\n    pm.expect(noticias.length).to.be.at.least(3);\r\n});\r\n\r\npm.test(\"Cada noticia tiene título y resumen\", () => {\r\n    noticias.forEach(n => {\r\n        pm.expect(n.titulo).to.be.a(\"string\").and.not.empty;\r\n        pm.expect(n.resumen).to.be.a(\"string\").and.not.empty;\r\n    });\r\n});\r\n\r\npm.test(\"Ordenadas de la más reciente a la más antigua\", () => {\r\n    const f = noticias.map(n => new Date(n.fechaPublicacion).getTime());\r\n    pm.expect(f).to.eql([...f].sort((a, b) => b - a));\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/noticias?page=0&size=8",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "noticias"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "8"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "G-004 Calendario",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const eventos = pm.response.json();\r\n\r\npm.test(\"Responde 200\", () => pm.response.to.have.status(200));\r\n\r\npm.test(\"Hay al menos 1 evento cargado\", () => {\r\n    pm.expect(eventos.length).to.be.at.least(1);\r\n});\r\n\r\npm.test(\"Cada evento tiene fecha, horario y disciplina\", () => {\r\n    eventos.forEach(e => {\r\n        pm.expect(e.fechaEvento).to.be.a(\"string\").and.not.empty;\r\n        pm.expect(e.cronograma).to.be.a(\"string\").and.not.empty;\r\n        pm.expect(e.disciplina).to.be.a(\"string\").and.not.empty;\r\n    });\r\n});\r\n\r\npm.test(\"Ordenados cronológicamente\", () => {\r\n    const f = eventos.map(e => new Date(e.fechaEvento + \"T\" + e.cronograma).getTime());\r\n    pm.expect(f).to.eql([...f].sort((a, b) => a - b));\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/eventos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "eventos"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
