@@ -1,3 +1,4 @@
+const { AdminDashboardPage } = require('../pages/AdminDashboardPage');
 const { test, expect } = require('@playwright/test');
 const { AdminLoginPage } = require('../pages/AdminLoginPage');
 
@@ -19,11 +20,14 @@ test.describe('Login de administrador', () => {
     await expect(page).toHaveURL(/admin\/login/);
   });
 
-  test('con datos validos entra al panel', async ({ page }) => {
+    test('con datos validos entra al panel', async ({ page }) => {
     test.skip(!ADMIN_PASSWORD, 'Falta la variable ADMIN_PASSWORD');
     const adminLogin = new AdminLoginPage(page);
+    const dashboard = new AdminDashboardPage(page);
     await adminLogin.goto();
     await adminLogin.login(ADMIN_EMAIL, ADMIN_PASSWORD);
-    await expect(page).not.toHaveURL(/login/);
+    await expect(dashboard.title).toBeVisible();
+    await expect(dashboard.noticiasLink).toBeVisible();
+    await expect(dashboard.logoutButton).toBeVisible();
   });
 });
