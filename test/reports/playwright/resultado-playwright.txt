@@ -1,0 +1,13 @@
+
+Running 8 tests using 8 workers
+
+  ok 1 [chromium] › tests\login.spec.js:13:3 › Login de usuarios › con datos invalidos no deja entrar (892ms)
+  ok 3 [chromium] › tests\admin-login.spec.js:9:3 › Login de administrador › muestra el formulario de login de admin (985ms)
+  ok 5 [chromium] › tests\admin-login.spec.js:16:3 › Login de administrador › con datos invalidos no deja entrar (1.2s)
+  ok 4 [chromium] › tests\login.spec.js:5:3 › Login de usuarios › muestra el formulario de login (1.3s)
+  ok 8 [chromium] › tests\noticias.spec.js:13:3 › Noticias › muestra la paginacion (1.1s)
+  ok 2 [chromium] › tests\admin-login.spec.js:23:5 › Login de administrador › con datos validos entra al panel (1.4s)
+  ok 6 [chromium] › tests\noticias.spec.js:5:5 › Noticias › muestra el listado de noticias (1.3s)
+  ok 7 [chromium] › tests\noticias.spec.js:19:3 › Noticias › Ver más abre el detalle de una noticia (1.3s)
+
+  8 passed (2.9s)
